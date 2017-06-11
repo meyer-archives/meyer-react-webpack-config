@@ -43,7 +43,6 @@ function getWebpackConfig({
   const cssLoaderObject = {
     loader: require.resolve('css-loader'),
     options: {
-      modules: true,
       importLoaders: 1,
     },
   };
