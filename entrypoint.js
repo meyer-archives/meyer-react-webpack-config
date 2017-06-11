@@ -1,13 +1,13 @@
 /* global __REACT_ROOT_ID__ */
 
-const React = require('react');
-const ReactDOM = require('react-dom');
-const { AppContainer } = require('react-hot-loader');
+var React = require('react');
+var ReactDOM = require('react-dom');
+var AppContainer = require('react-hot-loader').AppContainer;
 
-const reactRoot = document.getElementById(__REACT_ROOT_ID__);
+var reactRoot = document.getElementById(__REACT_ROOT_ID__);
 
 function renderComponent() {
-  const Component = require('__ROOT_COMPONENT__').default;
+  var Component = require('__ROOT_COMPONENT__').default;
 
   ReactDOM.render(
     React.createElement(
