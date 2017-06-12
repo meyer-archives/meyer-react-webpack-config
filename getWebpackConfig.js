@@ -7,15 +7,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const entrypointPath = require.resolve('./entrypoint');
 
-// gross
-const IS_HOT =
-  typeof process.argv[1] === 'string' &&
-  /webpack-dev-server/.test(process.argv[1]);
-
 function getWebpackConfig({
   componentPath,
   buildPath,
   jsxstyleLoaderOptions,
+  htmlTemplate = path.resolve(__dirname, 'template.html'),
   reactID = '.react-root',
   cssFileName = 'bundle.css',
   bundleFileName = 'bundle.js',
@@ -33,6 +29,13 @@ function getWebpackConfig({
     '`buildPath` is expected to be an absolute path to a directory'
   );
 
+  invariant(
+    typeof htmlTemplate === 'string' &&
+      path.isAbsolute(htmlTemplate) &&
+      path.extname(htmlTemplate) === '.html',
+    '`htmlTemplate` is expected to be an absolute path to a HTML file'
+  );
+
   const postcssLoaderObject = {
     loader: require.resolve('postcss-loader'),
     options: {
@@ -47,103 +50,108 @@ function getWebpackConfig({
     },
   };
 
-  return {
-    entry: [
-      // patch is a noop in non-hot environments, but let's filter it out anyway
-      IS_HOT && require.resolve('react-hot-loader/patch'),
-      entrypointPath,
-    ].filter(f => f),
-    output: {
-      path: path.resolve(__dirname, 'build'),
-      filename: bundleFileName,
-    },
-    plugins: [
-      new HtmlWebpackPlugin({
-        title: './DemoPage.js',
-        template: path.resolve(__dirname, 'template.html'),
-        inject: false,
-        _react_id: reactID,
-      }),
-      IS_HOT ? new webpack.NamedModulesPlugin() : null,
-      new webpack.NoEmitOnErrorsPlugin(),
-      IS_HOT ? null : new ExtractTextPlugin(cssFileName),
-      new webpack.DefinePlugin({
-        __REACT_ROOT_ID__: JSON.stringify(reactID),
-        __ROOT_COMPONENT__: JSON.stringify(componentPath),
-      }),
-    ].filter(f => f),
-    resolve: {
-      alias: {
-        __ROOT_COMPONENT__: componentPath,
+  return function(idk, env) {
+    return {
+      entry: [
+        // patch is a noop in non-hot environments, but let's filter it out anyway
+        env.hot && require.resolve('react-hot-loader/patch'),
+        entrypointPath,
+      ].filter(f => f),
+      output: {
+        path: buildPath,
+        filename: bundleFileName,
       },
-    },
-    module: {
-      rules: [
-        {
-          test: /\.js$/,
-          exclude: /node_modules/,
-          use: [
-            {
-              loader: require.resolve('babel-loader'),
-              options: {
-                // ignoring babelrc
-                babelrc: false,
-                presets: [
-                  [
-                    require.resolve('babel-preset-env'),
-                    { targets: { browsers } },
+      plugins: [
+        new HtmlWebpackPlugin({
+          title: './DemoPage.js',
+          template: htmlTemplate,
+          libraryTarget: 'umd',
+          inject: false,
+          _react_id: reactID,
+        }),
+        env.hot && new webpack.NamedModulesPlugin(),
+        new webpack.NoEmitOnErrorsPlugin(),
+        !env.hot && new ExtractTextPlugin(cssFileName),
+        new webpack.DefinePlugin({
+          __REACT_ROOT_ID__: JSON.stringify(reactID),
+          __ROOT_COMPONENT__: JSON.stringify(componentPath),
+        }),
+      ].filter(f => f),
+      resolve: {
+        alias: {
+          __ROOT_COMPONENT__: componentPath,
+        },
+      },
+      module: {
+        rules: [
+          {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: [
+              {
+                loader: require.resolve('babel-loader'),
+                options: {
+                  // ignoring babelrc
+                  babelrc: false,
+                  presets: [
+                    [
+                      require.resolve('babel-preset-env'),
+                      { targets: { browsers } },
+                    ],
+                    require.resolve('babel-preset-react'),
                   ],
-                  require.resolve('babel-preset-react'),
-                ],
-                plugins: [
-                  IS_HOT && require.resolve('react-hot-loader/babel'),
-                  require.resolve('babel-plugin-transform-object-rest-spread'),
-                  require.resolve('babel-plugin-transform-object-assign'),
-                ].filter(f => f),
+                  plugins: [
+                    env.hot && require.resolve('react-hot-loader/babel'),
+                    require.resolve(
+                      'babel-plugin-transform-object-rest-spread'
+                    ),
+                    require.resolve('babel-plugin-transform-object-assign'),
+                  ].filter(f => f),
+                },
               },
-            },
-            {
-              loader: require.resolve('jsxstyle-loader'),
-              options: jsxstyleLoaderOptions,
-            },
-          ],
-        },
-        {
-          test: /\.css$/,
-          use: IS_HOT
-            ? [
-                require.resolve('style-loader'),
-                cssLoaderObject,
-                postcssLoaderObject,
-              ]
-            : ExtractTextPlugin.extract({
-                use: [cssLoaderObject, postcssLoaderObject],
-                fallback: require.resolve('style-loader'),
-              }),
-        },
-        {
-          test: /fonts\/[^/]+\.(eot|svg|ttf|woff|woff2)$/,
-          use: {
-            loader: 'file-loader',
-            options: {
-              name: 'webfonts/[name].[ext]',
+              {
+                loader: require.resolve('jsxstyle-loader'),
+                options: jsxstyleLoaderOptions,
+              },
+            ],
+          },
+          {
+            test: /\.css$/,
+            use: env.hot
+              ? [
+                  require.resolve('style-loader'),
+                  cssLoaderObject,
+                  postcssLoaderObject,
+                ]
+              : ExtractTextPlugin.extract({
+                  use: [cssLoaderObject, postcssLoaderObject],
+                  fallback: require.resolve('style-loader'),
+                }),
+          },
+          {
+            test: /fonts\/[^/]+\.(eot|svg|ttf|woff|woff2)$/,
+            use: {
+              loader: 'file-loader',
+              options: {
+                name: 'webfonts/[name].[ext]',
+              },
             },
           },
-        },
-        {
-          test: /\.svg$/,
-          use: [
-            require.resolve('raw-loader'),
-            {
-              loader: require.resolve('svgo-loader'),
-              query: {
-                plugins: [{ removeTitle: true }, { convertPathData: false }],
+          {
+            test: /\.svg$/,
+            use: [
+              require.resolve('raw-loader'),
+              {
+                loader: require.resolve('svgo-loader'),
+                query: {
+                  plugins: [{ removeTitle: true }, { convertPathData: false }],
+                },
               },
-            },
-          ],
-        },
-      ],
-    },
+            ],
+          },
+        ],
+      },
+    };
   };
 }
 
