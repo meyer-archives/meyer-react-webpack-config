@@ -7,6 +7,7 @@ The function takes an object of options:
 | `componentPath` | path to the root component. Required. |
 | `buildPath` | path to webpack’s build destination. Required. |
 | `jsxstyleLoaderOptions` | options object passed to `jsxstyle-loader`. |
+| `emitCallback` | function that takes two parameters: the evaluated root component at `componentPath` and the compilation stats object. Expected to return an object of asset contents keyed by asset name. |
 | `htmlTemplate` | template file used by `html-webpack-plugin`. |
 | `reactID` | ID of the DOM node that React mounts to. Defaults to `.react-root`. |
 | `cssFileName` | name of the extracted CSS file. Defaults to `bundle.css`. |

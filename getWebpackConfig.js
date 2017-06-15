@@ -1,16 +1,31 @@
-const invariant = require('invariant');
+'use strict';
+
 const path = require('path');
+
+const modulePaths = [
+  // check project folder first
+  path.join(process.env.PWD, 'node_modules'),
+  // fall back to webpack config folder
+  path.join(__dirname, 'node_modules'),
+];
+
+process.env.NODE_PATH = modulePaths.join(':');
+require('module').Module._initPaths();
+
+const invariant = require('invariant');
 const webpack = require('webpack');
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const EvaluateBundlePlugin = require('./EvaluateBundlePlugin');
 const entrypointPath = require.resolve('./entrypoint');
 
 function getWebpackConfig({
   componentPath,
   buildPath,
   jsxstyleLoaderOptions,
+  emitCallback,
   htmlTemplate = path.resolve(__dirname, 'template.html'),
   reactID = '.react-root',
   cssFileName = 'bundle.css',
@@ -35,6 +50,13 @@ function getWebpackConfig({
       path.extname(htmlTemplate) === '.html',
     '`htmlTemplate` is expected to be an absolute path to a HTML file'
   );
+
+  if (typeof emitCallback !== 'undefined') {
+    invariant(
+      typeof emitCallback === 'function',
+      '`emitCallback` is expected to be a function'
+    );
+  }
 
   const postcssLoaderObject = {
     loader: require.resolve('postcss-loader'),
@@ -62,16 +84,17 @@ function getWebpackConfig({
         filename: bundleFileName,
       },
       plugins: [
+        !env.hot &&
+          emitCallback &&
+          new EvaluateBundlePlugin({ callback: emitCallback }),
+        env.hot && new webpack.NamedModulesPlugin(),
+        !env.hot && new ExtractTextPlugin(cssFileName),
         new HtmlWebpackPlugin({
-          title: './DemoPage.js',
           template: htmlTemplate,
-          libraryTarget: 'umd',
           inject: false,
           _react_id: reactID,
         }),
-        env.hot && new webpack.NamedModulesPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
-        !env.hot && new ExtractTextPlugin(cssFileName),
         new webpack.DefinePlugin({
           __REACT_ROOT_ID__: JSON.stringify(reactID),
           __ROOT_COMPONENT__: JSON.stringify(componentPath),
@@ -81,6 +104,7 @@ function getWebpackConfig({
         alias: {
           __ROOT_COMPONENT__: componentPath,
         },
+        modules: modulePaths,
       },
       module: {
         rules: [
@@ -131,7 +155,7 @@ function getWebpackConfig({
           {
             test: /fonts\/[^/]+\.(eot|svg|ttf|woff|woff2)$/,
             use: {
-              loader: 'file-loader',
+              loader: require.resolve('file-loader'),
               options: {
                 name: 'webfonts/[name].[ext]',
               },
