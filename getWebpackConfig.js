@@ -104,7 +104,7 @@ function getWebpackConfig({
         alias: {
           __ROOT_COMPONENT__: componentPath,
         },
-        modules: modulePaths,
+        modules: [].concat(modulePaths, 'node_modules'),
       },
       module: {
         rules: [
