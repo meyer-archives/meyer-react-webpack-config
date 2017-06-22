@@ -1,0 +1,15 @@
+{
+  "name": "wub-preset-react",
+  "version": "0.0.1",
+  "description": "Adds react entrypoint and react-hot-loader magic to webpack config",
+  "main": "index.js",
+  "author": "@meyer",
+  "license": "MIT",
+  "dependencies": {
+    "react-hot-loader": "next"
+  },
+  "peerDependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  }
+}

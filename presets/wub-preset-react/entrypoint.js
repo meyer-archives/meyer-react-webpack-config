@@ -9,7 +9,7 @@ var RootComponent = require('__ROOT_COMPONENT__').default;
 if (typeof document !== 'undefined') {
   var reactRoot = document.getElementById(__REACT_ROOT_ID__);
 
-  function renderComponent(Component) {
+  var renderComponent = function(Component) {
     ReactDOM.render(
       React.createElement(
         AppContainer,
@@ -18,7 +18,7 @@ if (typeof document !== 'undefined') {
       ),
       reactRoot
     );
-  }
+  };
 
   renderComponent(RootComponent);
 

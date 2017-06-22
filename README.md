@@ -1,6 +1,5 @@
-# meyer-react-webpack-config
-This here thing is a function that returns an opinionated webpack config.
-The function takes an object of options:
+# wub
+This here thing is a thing that returns an opinionated webpack config.
 
 | Option | Description |
 |---|---|
@@ -18,14 +17,14 @@ The function takes an object of options:
 
 1. #### Install it:
 
-```yarn add webpack webpack-dev-server meyer-react-webpack-config```
+```yarn add webpack webpack-dev-server wub```
 
 2. #### Create a `webpack.config.js` file that looks like this:
 
 ```js
 const path = require('path');
 
-module.exports = require('meyer-react-webpack-config')({
+module.exports = require('wub')({
   componentPath: require.resolve('./components/Site'),
   buildPath: path.resolve('build'),
 });

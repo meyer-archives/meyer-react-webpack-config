@@ -1,0 +1,11 @@
+{
+  "name": "wub-preset-jsxstyle",
+  "version": "0.0.1",
+  "description": "Appends `jsxstyle-loader` to JS loaders",
+  "main": "index.js",
+  "author": "@meyer",
+  "license": "MIT",
+  "dependencies": {
+    "jsxstyle-loader": "^1.0.0-beta.2"
+  }
+}
