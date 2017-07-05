@@ -40,6 +40,6 @@ module.exports = require('meyer-react-webpack-config')({
 
 - For a **development** hot-reloading environment:
 
-    ```webpack-dev-server --hot --hotOnly --inline --historyApiFallback --port YOUR_PORT_NUMBER```
+    ```webpack-dev-server --hot --hotOnly --inline --historyApiFallback```
 
 [browserslist]: https://github.com/ai/browserslist
