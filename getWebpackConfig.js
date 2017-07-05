@@ -3,10 +3,10 @@
 const path = require('path');
 
 const modulePaths = [
-  // check project folder first
-  path.join(process.env.PWD, 'node_modules'),
-  // fall back to webpack config folder
+  // check webpack config folder first
   path.join(__dirname, 'node_modules'),
+  // fall back to project folder
+  path.join(process.env.PWD, 'node_modules'),
 ];
 
 process.env.NODE_PATH = modulePaths.join(':');
