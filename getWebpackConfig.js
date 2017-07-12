@@ -133,11 +133,13 @@ function getWebpackConfig({
                   ].filter(f => f),
                 },
               },
-              {
-                loader: require.resolve('jsxstyle-loader'),
-                options: jsxstyleLoaderOptions,
-              },
-            ],
+              jsxstyleLoaderOptions
+                ? {
+                    loader: require.resolve('jsxstyle-loader'),
+                    options: jsxstyleLoaderOptions,
+                  }
+                : null,
+            ].filter(f => f),
           },
           {
             test: /\.css$/,
