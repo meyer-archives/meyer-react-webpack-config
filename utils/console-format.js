@@ -58,46 +58,49 @@ const ansiCodes = {
   bgWhite: [47, 49],
 };
 
-exports.styleString = function styleString() {
+let appliedStyles = [];
+
+function styleString() {
   const [str, ...styles] = Array.from(arguments);
 
   if (!supportsColors) return str;
 
   invariant(styles.length > 0, 'styleString requires at least two parameters');
 
-  return styles.reduce((s, style) => {
+  const oldStyles = appliedStyles.slice(0);
+
+  const styled = styles.reduce((s, style) => {
     invariant(ansiCodes[style], `'${style}' is not a valid style.`);
     return `\u001b[${ansiCodes[style][0]}m${s}\u001b[${ansiCodes[style][1]}m`;
   }, str);
-};
 
-// hmmmmm....
-let appliedStyles = [];
+  if (appliedStyles.length === 0) {
+    return styled;
+  }
 
-exports.styleStart = function styleStart() {
+  return styleEnd() + styled + styleStart.call(null, oldStyles);
+}
+
+function styleStart() {
   if (!supportsColors) return '';
   return Array.from(arguments)
     .map(style => {
       invariant(ansiCodes[style], `'${style}' is not a valid style.`);
-      appliedStyles.unshift(ansiCodes[style][1]);
+      appliedStyles.unshift(style);
       return `\u001b[${ansiCodes[style][0]}m`;
     })
     .join('');
-};
+}
 
-exports.styleEnd = function styleEnd() {
+function styleEnd() {
   if (!supportsColors) return '';
   const oldStyles = appliedStyles.slice(0);
   appliedStyles = [];
-  return oldStyles
-    .map(code => {
-      return `\u001b[${code}m`;
-    })
-    .join('');
-};
+  return oldStyles.map(style => `\u001b[${ansiCodes[style][1]}m`).join('');
+}
 
 function cleanup({ exit }, err) {
-  process.stdout.write(exports.styleEnd());
+  process.stdout.write(styleEnd());
   if (err) console.log(err.stack);
   if (exit) process.exit();
 }
@@ -107,3 +110,5 @@ process.on('exit', cleanup);
 process.on('SIGINT', cleanup.bind(null, { exit: true })); // Ctrl+C
 process.on('SIGTERM', cleanup.bind(null, { exit: true })); // necessary?
 process.on('uncaughtException', cleanup.bind(null, { exit: true }));
+
+module.exports = { styleString, styleStart, styleEnd };
