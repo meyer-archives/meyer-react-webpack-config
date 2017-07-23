@@ -1,21 +1,21 @@
 /* global __REACT_ROOT_ID__ */
 
-var React = require('react');
-var ReactDOM = require('react-dom');
-var AppContainer = require('react-hot-loader').AppContainer;
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { AppContainer } from 'react-hot-loader';
 
-var RootComponent = require('__WUB_ENTRYPOINT__').default;
+import RootComponent from '__WUB_ENTRYPOINT__';
+
+console.log('wow!');
 
 if (typeof document !== 'undefined') {
-  var reactRoot = document.getElementById(__REACT_ROOT_ID__);
+  const reactRoot = document.getElementById(__REACT_ROOT_ID__);
 
-  var renderComponent = function(Component) {
+  const renderComponent = () => {
     ReactDOM.render(
-      React.createElement(
-        AppContainer,
-        null,
-        React.createElement(Component, null)
-      ),
+      <AppContainer>
+        <RootComponent />
+      </AppContainer>,
       reactRoot
     );
   };
@@ -23,10 +23,7 @@ if (typeof document !== 'undefined') {
   renderComponent(RootComponent);
 
   if (module.hot) {
-    module.hot.accept('__WUB_ENTRYPOINT__', function() {
-      var NewRootComponent = require('__WUB_ENTRYPOINT__').default;
-      renderComponent(NewRootComponent);
-    });
+    module.hot.accept('__WUB_ENTRYPOINT__', renderComponent);
   }
 }
 

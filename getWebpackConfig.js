@@ -13,9 +13,9 @@ function getWebpackConfig(config, command) {
   const modulePaths = config.presets.map(p =>
     path.resolve(path.dirname(p[0]), 'node_modules')
   );
-  // allow local override
+
+  // allow local override, fall back to project folder
   modulePaths.unshift(path.join(process.env.PWD, 'node_modules'));
-  // fall back to project folder
   modulePaths.push(path.join(__dirname, 'node_modules'));
 
   process.env.NODE_PATH = modulePaths.join(':');
@@ -25,25 +25,27 @@ function getWebpackConfig(config, command) {
 
   // base configuration
   let mergedConfig = {
-    entry: config.entrypoint,
+    entry: [config.entrypoint],
     output: {
       path: path.join(process.env.PWD, 'build'),
     },
     resolve: {
       alias: {
-        __WUB_ENTRYPOINT__: config.entrypoint,
+        // __WUB_ENTRYPOINT__: config.entrypoint,
       },
       // 'node_modules' makes webpack search all ancestor node_modules folders
       modules: [].concat(modulePaths, 'node_modules'),
     },
-    module: { rules: [] },
     plugins: [
       new webpack.DefinePlugin({
         __WUB_ENTRYPOINT__: JSON.stringify(config.entrypoint),
       }),
       // enable named modules in development
       isServing && new webpack.NamedModulesPlugin(),
+      isServing && new webpack.HotModuleReplacementPlugin(),
+      new webpack.ProgressPlugin(),
     ].filter(f => f),
+    module: { rules: [] },
   };
 
   const babelOptions = {

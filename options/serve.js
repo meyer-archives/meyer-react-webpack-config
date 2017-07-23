@@ -1,7 +1,6 @@
 const invariant = require('invariant');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const ProgressPlugin = require('webpack/lib/ProgressPlugin');
 
 const portfinder = require('portfinder');
 
@@ -10,14 +9,15 @@ function run(args, webpackConfig) {
   portfinder.getPort(function(err, port) {
     invariant(!err, err || 'no');
 
-    webpackConfig.entry.unshift('webpack/hot/only-dev-server');
     webpackConfig.entry.unshift(
-      `webpack-dev-server/client?http://localhost:${port}`
+      `webpack-dev-server/client?http://localhost:${port}`,
+      'webpack/hot/only-dev-server'
     );
+
+    console.log('webpackConfig!!!!!', webpackConfig.entry);
 
     const compiler = webpack(webpackConfig);
 
-    compiler.apply(new ProgressPlugin());
     compiler.plugin('done', () =>
       console.log('Serving on http://localhost:' + port)
     );
