@@ -2,6 +2,11 @@ const invariant = require('invariant');
 const path = require('path');
 const fs = require('fs');
 
+/**
+ * @param {object} config user-specified `wub` config object
+ * @param {string} configFilePath path to `wub.config.js`
+ * @returns {object} normalised wub config
+ */
 function normaliseConfig(config, configFilePath) {
   invariant(
     typeof config === 'object' && config !== null,

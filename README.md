@@ -1,48 +1,44 @@
 # wub
 `wub` is a lightweight wrapper around `webpack` and `webpack-dev-server`.
 
-It provides a `cli` application with two commands, `serve` and `build`, and it also exports a method that lets you build your own `webpack` config from `wub` presets.
+It provides a CLI application with two commands, `serve` and `build`, and it also exports a method that lets you build your own `webpack` config from `wub` presets.
 
-Using `wub` is as simple as 1, 2.
+**`wub` presets** are lightweight webpack configs that enable one feature.
 
-1. Install it:
+## Getting Started
 
-```npm install --save wub```
+Install `wub` globally with `npm install -g wub`. It will be available to you on the command line as `wub`.
 
-2. Use it:
+In your project folder, run `wub init`. This will generate a barebones `wub.config.js` file which you can then tweak.
 
-  - If you’d like `wub` to manage `webpack` and `webpack-dev-server` versions,
-    use the **CLI application**.
-
-    In your project folder, create a file called `wub.config.js` that looks something like this:
+Here’s an example:
 
 ```js
 module.exports = {
   entrypoint: './components/Site',
-  presets: ['react', 'postcss'],
+  presets: [
+    ['react', {domID: '.react-root'}],
+    'postcss',
+  ],
 };
 ```
 
-  - If you’d like access to the raw webpack config, use the **node API**:
+### Alternate usage
 
-    In your project folder, create a webpack config file with the following contents:
+If you’d like to manage `webpack` and `webpack-dev-server` versions yourself, you’ll want to use the **node API** to generate a webpack config. Install `wub` locally by running `npm install wub`.
+
+In your project folder, create a webpack config file with the following contents:
 
 ```js
 module.exports = require('wub')({
   entrypoint: './components/Site',
-  presets: ['react', 'postcss'],
+  presets: [
+    ['react', {domID: '.react-root'}],
+    'postcss',
+  ],
 });
 ```
 
-
-3. #### Add `scripts` to your `package.json` file:
-
-- For a **producution** build:
-
-    ```webpack -p --progress```
-
-- For a **development** hot-reloading environment:
-
-    ```webpack-dev-server --hot --hotOnly --inline --historyApiFallback```
+If you’re using the node API, you’ll need to pass an additional `env` flag to webpack to switch between `serve` and `build`.
 
 [browserslist]: https://github.com/ai/browserslist

@@ -2,6 +2,12 @@ const path = require('path');
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 
+/**
+ * Merges presets specified in a `wub` config object into a webpack config
+ * @param {object} config `wub` config object
+ * @param {string} command CLI option passed to `wub`
+ * @returns {object} merged webpack config object
+ */
 function getWebpackConfig(config, command) {
   // Add each preset's node_module path to the require path
   const modulePaths = config.presets.map(p =>

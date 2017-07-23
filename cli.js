@@ -3,7 +3,7 @@
 
 const invariant = require('invariant');
 
-const getNearestConfig = require('./getNearestConfig');
+const getClosestAncestor = require('./getClosestAncestor');
 const getWebpackConfig = require('./getWebpackConfig');
 const normaliseConfig = require('./normaliseConfig');
 
@@ -22,7 +22,7 @@ try {
   invariant(command, 'An argument is required');
   invariant(commands.hasOwnProperty(command), 'Invalid option: `%s`', command);
 
-  const configFilePath = getNearestConfig(process.cwd());
+  const configFilePath = getClosestAncestor('wub.config.js', process.env.PWD);
   const config = require(configFilePath);
   const normalisedConfig = normaliseConfig(config);
   const webpackConfig = getWebpackConfig(normalisedConfig, command);
