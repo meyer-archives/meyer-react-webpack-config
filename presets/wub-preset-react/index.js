@@ -1,28 +1,30 @@
+const invariant = require('invariant');
 const webpack = require('webpack');
 
 const entrypointPath = require.resolve('./entrypoint');
 
-module.exports = function(env, options, { existingConfig }) {
-  const babelLoader = existingConfig.module.rules.find(
-    m => typeof m === 'object' && m.loader.match(/babel\-loader/)
+module.exports = function(config, presetOptions, isServing, babelOptions) {
+  const domID = presetOptions.domID || '.react-root';
+
+  invariant(
+    typeof domID === 'string' && domID !== '',
+    'React preset requires domID option to be set to a valid ID'
   );
 
   const entry = [entrypointPath];
-  babelLoader.options.presets.push(require.resolve('babel-preset-react'));
+  babelOptions.presets.push(require.resolve('babel-preset-react'));
 
-  if (env.hot) {
+  if (isServing) {
     entry.unshift(require.resolve('react-hot-loader/patch'));
-    babelLoader.options.plugins.push(require.resolve('react-hot-loader/babel'));
+    babelOptions.plugins.push(require.resolve('react-hot-loader/babel'));
   }
 
   return {
     entry,
     plugins: [
       new webpack.DefinePlugin({
-        __REACT_ROOT_ID__: JSON.stringify(options.domID),
-        __ROOT_COMPONENT__: JSON.stringify(options.rootComponent),
+        __REACT_ROOT_ID__: JSON.stringify(domID),
       }),
     ],
-    module: { rules: [babelLoader] },
   };
 };

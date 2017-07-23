@@ -1,6 +1,8 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-module.exports = function(env, options, { browserslist }) {
+module.exports = function({ browserslist }, presetConfig, isServing) {
+  const cssFileName = presetConfig.cssFileName || 'bundle.css';
+
   const postcssLoaderObject = {
     loader: require.resolve('postcss-loader'),
     options: {
@@ -15,12 +17,18 @@ module.exports = function(env, options, { browserslist }) {
     },
   };
 
+  const plugins = [];
+  if (!isServing) {
+    plugins.push(new ExtractTextPlugin(cssFileName));
+  }
+
   return {
+    plugins,
     module: {
       rules: [
         {
           test: /\.css$/,
-          use: env.hot
+          use: isServing
             ? [
                 require.resolve('style-loader'),
                 cssLoaderObject,

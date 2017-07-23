@@ -7,7 +7,7 @@ for (const css in htmlWebpackPlugin.files.css) { %>
 }
 
 %>
-<div id="<%= htmlWebpackPlugin.options._react_id %>"></div><%
+<div id=".react-root"></div><%
 
 for (const chunk in htmlWebpackPlugin.files.chunks) { %>
 <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script><%

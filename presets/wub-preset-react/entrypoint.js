@@ -4,7 +4,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var AppContainer = require('react-hot-loader').AppContainer;
 
-var RootComponent = require('__ROOT_COMPONENT__').default;
+var RootComponent = require('__WUB_ENTRYPOINT__').default;
 
 if (typeof document !== 'undefined') {
   var reactRoot = document.getElementById(__REACT_ROOT_ID__);
@@ -23,8 +23,8 @@ if (typeof document !== 'undefined') {
   renderComponent(RootComponent);
 
   if (module.hot) {
-    module.hot.accept('__ROOT_COMPONENT__', function() {
-      var NewRootComponent = require('__ROOT_COMPONENT__').default;
+    module.hot.accept('__WUB_ENTRYPOINT__', function() {
+      var NewRootComponent = require('__WUB_ENTRYPOINT__').default;
       renderComponent(NewRootComponent);
     });
   }

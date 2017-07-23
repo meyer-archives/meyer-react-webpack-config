@@ -2,8 +2,8 @@
 
 const EvaluateBundlePlugin = require('evaluate-bundle-webpack-plugin');
 
-module.exports = function(env, options) {
+module.exports = function(pluginOptions) {
   return {
-    plugins: [new EvaluateBundlePlugin(options)],
+    plugins: [new EvaluateBundlePlugin(pluginOptions)],
   };
 };

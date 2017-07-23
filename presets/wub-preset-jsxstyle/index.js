@@ -1,12 +1,12 @@
 'use strict';
-module.exports = function(env, options) {
+module.exports = function(pluginOptions) {
   return {
     module: {
       rules: [
         {
           test: /\.js/,
           loader: require.resolve('jsxstyle-loader'),
-          options,
+          pluginOptions,
         },
       ],
     },
