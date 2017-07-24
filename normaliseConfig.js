@@ -18,8 +18,12 @@ function normaliseConfig(config, configFilePath) {
     configFilePath
   );
 
+  const configFileDir = path.dirname(configFilePath);
+
   const normalisedConfig = {
     browserslist: ['last 2 versions', '> 5%'],
+    configFilePath,
+    configFileDir,
   };
 
   invariant(
@@ -27,10 +31,24 @@ function normaliseConfig(config, configFilePath) {
     'config.entrypoint is expected to be a path to a JS file'
   );
 
+  const modulePaths = Array.from(
+    new Set([
+      // this project's directory
+      path.join(__dirname, 'node_modules'),
+      // directory that contains webpack.config.js
+      path.join(configFileDir, 'node_modules'),
+      // PWD (might not be webpack config directory)
+      path.join(process.env.PWD, 'node_modules'),
+    ])
+  );
+
+  process.env.NODE_PATH = modulePaths.join(':');
+  require('module').Module._initPaths();
+
   try {
     if (!path.isAbsolute(config.entrypoint)) {
       normalisedConfig.entrypoint = require.resolve(
-        path.join(path.dirname(configFilePath), config.entrypoint)
+        path.join(configFileDir, config.entrypoint)
       );
     } else {
       normalisedConfig.entrypoint = require.resolve(config.entrypoint);
@@ -43,8 +61,6 @@ function normaliseConfig(config, configFilePath) {
     throw err;
   }
 
-  const modulePaths = [path.resolve(__dirname, 'node_modules')];
-
   // expand presets
   if (config.hasOwnProperty('presets')) {
     invariant(
@@ -52,6 +68,7 @@ function normaliseConfig(config, configFilePath) {
       'config.presets is expected to be an array (in %s)',
       configFilePath
     );
+
     normalisedConfig.presets = config.presets.map((p, idx) => {
       let name;
       let config;
@@ -70,23 +87,35 @@ function normaliseConfig(config, configFilePath) {
           typeof name === 'string',
           'config.presets[%s][0] is expected to be a string'
         );
-        invariant(
-          typeof config === 'object' && config !== null,
-          'config.presets[%s][1] is expected to be a config object',
-          idx
-        );
+        if (p.length > 1) {
+          invariant(
+            typeof config === 'object' && config !== null,
+            'config.presets[%s][1] is expected to be a config object',
+            idx
+          );
+        } else {
+          config = {};
+        }
       } else {
         invariant(false, 'Invalid preset at `config.presets[%s]`', idx);
       }
 
+      let preset;
       if (name.indexOf('/') === -1) {
-        modulePaths.push(
-          path.resolve(__dirname, `./presets/wub-preset-${name}/node_modules`)
-        );
-        return [require.resolve(`./presets/wub-preset-${name}`), config];
+        if (!name.startsWith('wub-preset-')) {
+          name = `wub-preset-${name}`;
+        }
+
+        // if no slash is present, it's a module
+        preset = require.resolve(name);
+      } else {
+        // if a slash is present, it's some kind of path
+        const presetPath = path.resolve(configFileDir, name);
+        preset = require.resolve(presetPath);
       }
-      modulePaths.push(path.resolve(name, 'node_modules'));
-      return [require.resolve(name), config];
+
+      // this will fail if `preset` resolves to a file in a subdirectory
+      return [preset, config];
     });
   }
 

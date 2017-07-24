@@ -7,7 +7,7 @@ module.exports = require('../')({
         domID: '.react-root',
       },
     ],
-    'postcss',
+    'cssnext',
     'html',
   ],
 });

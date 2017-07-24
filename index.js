@@ -6,7 +6,8 @@ const path = require('path');
 const { styleEnd, styleStart } = require('./utils/console-format');
 
 invariant(
-  path.basename(module.parent.filename) === 'webpack.config.js',
+  // match webpack.config.js and all its weird friends
+  path.basename(module.parent.filename).startsWith('webpack.config.'),
   '`wub` should be required from a webpack config file'
 );
 

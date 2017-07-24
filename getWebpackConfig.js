@@ -3,9 +3,9 @@ const webpackMerge = require('webpack-merge');
 
 /**
  * Merges presets specified in a wub config object into a webpack config
- * @param {Object} wubConfig wub config object
- * @param {String} webpackOptions webpack's `options` object passed through to wub
- * @returns {Object} merged webpack config object
+ * @param {object} wubConfig wub config object
+ * @param {string} webpackOptions webpack's `options` object passed through to wub
+ * @returns {object} merged webpack config object
  */
 function getWebpackConfig(wubConfig, modulePaths, webpackOptions) {
   // gross
