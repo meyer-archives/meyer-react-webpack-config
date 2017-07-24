@@ -1,5 +1,5 @@
-module.exports = {
-  entrypoint: require.resolve('./Demo'),
+module.exports = require('../')({
+  entrypoint: './Demo',
   presets: [
     [
       'react',
@@ -10,4 +10,4 @@ module.exports = {
     'postcss',
     'html',
   ],
-};
+});

@@ -1,6 +1,5 @@
 const invariant = require('invariant');
 const path = require('path');
-const fs = require('fs');
 
 /**
  * @param {object} config user-specified `wub` config object
@@ -8,6 +7,11 @@ const fs = require('fs');
  * @returns {object} normalised wub config
  */
 function normaliseConfig(config, configFilePath) {
+  invariant(
+    typeof configFilePath === 'string' && configFilePath !== '',
+    'normaliseConfig expects a valid path as its second parameter'
+  );
+
   invariant(
     typeof config === 'object' && config !== null,
     'Config at `%s` is not a valid config file.',
@@ -23,21 +27,21 @@ function normaliseConfig(config, configFilePath) {
     'config.entrypoint is expected to be a path to a JS file'
   );
 
-  if (!path.isAbsolute(config.entrypoint)) {
-    normalisedConfig.entrypoint = path.resolve(
-      path.dirname(configFilePath),
-      normalisedConfig.entrypoint
+  try {
+    if (!path.isAbsolute(config.entrypoint)) {
+      normalisedConfig.entrypoint = require.resolve(
+        path.join(path.dirname(configFilePath), config.entrypoint)
+      );
+    } else {
+      normalisedConfig.entrypoint = require.resolve(config.entrypoint);
+    }
+  } catch (e) {
+    const err = new Error(
+      `Entrypoint \`${config.entrypoint}\` could not be resolved`
     );
-  } else {
-    normalisedConfig.entrypoint = config.entrypoint;
+    err.stack = e.stack;
+    throw err;
   }
-
-  invariant(
-    fs.existsSync(normalisedConfig.entrypoint),
-    'config.entrypoint did not resolve to a valid file:\n  %s\n  --->\n  %s',
-    config.entrypoint,
-    normalisedConfig.entrypoint
-  );
 
   const modulePaths = [path.resolve(__dirname, 'node_modules')];
 

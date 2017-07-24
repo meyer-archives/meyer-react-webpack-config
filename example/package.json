@@ -5,7 +5,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "hot": "webpack-dev-server --hot --hotOnly --inline --historyApiFallback",
+    "hot": "webpack-dev-server --hot",
     "build": "webpack -p"
   },
   "keywords": [],
@@ -13,9 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "jsxstyle": "^2.0.0-beta.2",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "webpack": "^3.0.0",
-    "webpack-dev-server": "^2.5.0"
+    "webpack": "^3.3.0",
+    "webpack-dev-server": "^2.6.1"
   }
 }
