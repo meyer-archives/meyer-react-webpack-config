@@ -1,9 +1,7 @@
 const invariant = require('invariant');
 const webpack = require('webpack');
 
-const entrypointPath = require.resolve('./entrypoint');
-
-module.exports = function(config, presetOptions, isServing, babelOptions) {
+module.exports = function(config, presetOptions, { hot }, babelOptions) {
   const domID = presetOptions.domID || '.react-root';
 
   invariant(
@@ -11,11 +9,11 @@ module.exports = function(config, presetOptions, isServing, babelOptions) {
     'React preset requires domID option to be set to a valid ID'
   );
 
-  const entry = [entrypointPath];
+  const entry = [require.resolve('./entrypoint')];
   babelOptions.presets.push(require.resolve('babel-preset-react'));
-
-  if (isServing) {
-    entry.unshift(require.resolve('react-hot-loader/patch'));
+  if (hot) {
+    // path is a noop in production but might as well filter it out
+    entry.unshift('react-hot-loader/patch');
     babelOptions.plugins.push(require.resolve('react-hot-loader/babel'));
   }
 
