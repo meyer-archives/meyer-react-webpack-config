@@ -53,6 +53,8 @@ function getWebpackConfig(config, command) {
     plugins: ['transform-object-rest-spread', 'transform-object-assign'],
   };
 
+  const mergeStrategy = { entry: 'replace' };
+
   for (let idx = -1, len = config.presets.length; ++idx < len; ) {
     const [presetPath, presetOptions] = config.presets[idx];
 
@@ -64,7 +66,10 @@ function getWebpackConfig(config, command) {
       babelOptions
     );
 
-    mergedConfig = webpackMerge(mergedConfig, presetConfig);
+    mergedConfig = webpackMerge.smartStrategy(mergeStrategy)(
+      mergedConfig,
+      presetConfig
+    );
   }
 
   babelOptions.babelrc = false;
