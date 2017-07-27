@@ -1,5 +1,6 @@
 const path = require('path');
 const webpackMerge = require('webpack-merge');
+const Module = require('module');
 
 /**
  * Merges presets specified in a wub config object into a webpack config
@@ -7,8 +8,30 @@ const webpackMerge = require('webpack-merge');
  * @param {string} webpackOptions webpack's `options` object passed through to wub
  * @returns {object} merged webpack config object
  */
-function getWebpackConfig(wubConfig, modulePaths, webpackOptions) {
+function getWebpackConfig(wubConfig, webpackOptions) {
+  const modulePaths = Array.from(
+    // dedupe
+    new Set(
+      [].concat(
+        // project directory
+        path.join(wubConfig.configFileDir, 'node_modules'),
+        // PWD (might not be the project directory)
+        path.join(process.env.PWD, 'node_modules'),
+        // wub directory
+        path.join(__dirname, 'node_modules'),
+        // preset directories
+        wubConfig.presets.map(p =>
+          path.resolve(path.dirname(p[0]), 'node_modules')
+        ),
+        module.paths,
+        Module.globalPaths
+      )
+    )
+  );
+
   // gross
+  process.env.NODE_PATH = modulePaths.join(':');
+  Module.Module._initPaths();
   const webpack = require('webpack');
 
   // base configuration
@@ -75,7 +98,7 @@ function getWebpackConfig(wubConfig, modulePaths, webpackOptions) {
           exclude: /node_modules/,
           use: [
             {
-              loader: 'babel-loader',
+              loader: require.resolve('babel-loader'),
               options: babelOptions,
             },
           ],

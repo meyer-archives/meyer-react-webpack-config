@@ -1,5 +1,6 @@
 const invariant = require('invariant');
 const path = require('path');
+const ModuleResolver = require('./ModuleResolver');
 
 /**
  * @param {object} config user-specified `wub` config object
@@ -31,19 +32,14 @@ function normaliseConfig(config, configFilePath) {
     'config.entrypoint is expected to be a path to a JS file'
   );
 
-  const modulePaths = Array.from(
-    new Set([
-      // this project's directory
-      path.join(__dirname, 'node_modules'),
-      // directory that contains webpack.config.js
-      path.join(configFileDir, 'node_modules'),
-      // PWD (might not be webpack config directory)
-      path.join(process.env.PWD, 'node_modules'),
-    ])
-  );
-
-  process.env.NODE_PATH = modulePaths.join(':');
-  require('module').Module._initPaths();
+  const resolver = new ModuleResolver([
+    // wub directory
+    path.join(__dirname, 'node_modules'),
+    // project directory
+    path.join(configFileDir, 'node_modules'),
+    // PWD (might not be the project directory)
+    path.join(process.env.PWD, 'node_modules'),
+  ]);
 
   try {
     if (!path.isAbsolute(config.entrypoint)) {
@@ -107,11 +103,11 @@ function normaliseConfig(config, configFilePath) {
         }
 
         // if no slash is present, it's a module
-        preset = require.resolve(name);
+        preset = resolver.resolve(name);
       } else {
         // if a slash is present, it's some kind of path
         const presetPath = path.resolve(configFileDir, name);
-        preset = require.resolve(presetPath);
+        preset = resolver.resolve(presetPath);
       }
 
       // this will fail if `preset` resolves to a file in a subdirectory
