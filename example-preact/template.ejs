@@ -1,0 +1,17 @@
+<!doctype html>
+<meta charset="utf-8">
+<title><%= htmlWebpackPlugin.options.title %></title><%
+
+for (const css in htmlWebpackPlugin.files.css) { %>
+<link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet"><%
+}
+
+%>
+<body><%
+
+for (const chunk in htmlWebpackPlugin.files.chunks) { %>
+<script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script><%
+}
+
+%>
+</body>
