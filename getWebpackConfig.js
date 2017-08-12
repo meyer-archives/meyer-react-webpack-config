@@ -1,6 +1,7 @@
 const path = require('path');
 const webpackMerge = require('webpack-merge');
 const Module = require('module');
+const invariant = require('invariant');
 
 /**
  * Merges presets specified in a wub config object into a webpack config
@@ -33,6 +34,13 @@ function getWebpackConfig(wubConfig, webpackOptions) {
   process.env.NODE_PATH = modulePaths.join(':');
   Module.Module._initPaths();
   const webpack = require('webpack');
+  const webpackPkgJson = require('webpack/package');
+
+  invariant(
+    (webpackPkgJson.version + '').startsWith('3.'),
+    'wub is designed to work webpack 3. webpack %s is not supported.',
+    webpackPkgJson.version
+  );
 
   // base configuration
   let mergedConfig = {
@@ -90,22 +98,26 @@ function getWebpackConfig(wubConfig, webpackOptions) {
 
   babelOptions.babelrc = false;
 
-  mergedConfig = webpackMerge(mergedConfig, {
-    module: {
-      rules: [
-        {
-          test: /\.js$/,
-          exclude: /node_modules/,
-          use: [
-            {
-              loader: require.resolve('babel-loader'),
-              options: babelOptions,
-            },
-          ],
-        },
-      ],
+  // prepend babel-loader to loader array
+  mergedConfig = webpackMerge(
+    {
+      module: {
+        rules: [
+          {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: [
+              {
+                loader: require.resolve('babel-loader'),
+                options: babelOptions,
+              },
+            ],
+          },
+        ],
+      },
     },
-  });
+    mergedConfig
+  );
 
   return mergedConfig;
 }

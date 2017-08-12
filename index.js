@@ -5,19 +5,16 @@ const getWebpackConfig = require('./getWebpackConfig');
 const normaliseConfig = require('./normaliseConfig');
 const { styleEnd, styleStart } = require('./utils/console-format');
 
-invariant(
-  // match webpack.config.js and all its weird friends
-  path.basename(module.parent.filename).startsWith('webpack.config.'),
-  '`wub` should be required from a webpack config file'
-);
-
-function wub(wubConfig) {
+module.exports = wubConfig => (env, options) => {
   try {
-    const normalisedConfig = normaliseConfig(wubConfig, module.parent.filename);
+    invariant(
+      // match webpack.config.js and all its weird friends
+      path.basename(module.parent.filename).startsWith('webpack.config.'),
+      '`wub` should be required from a webpack config file'
+    );
 
-    return function(env, options) {
-      return getWebpackConfig(normalisedConfig, options);
-    };
+    const normalisedConfig = normaliseConfig(wubConfig, module.parent.filename);
+    return getWebpackConfig(normalisedConfig, options);
   } catch (e) {
     console.error(
       styleStart('red', 'bold') +
@@ -29,6 +26,4 @@ function wub(wubConfig) {
     );
     process.exit(69);
   }
-}
-
-module.exports = wub;
+};
