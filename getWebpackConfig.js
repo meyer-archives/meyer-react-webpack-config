@@ -46,7 +46,8 @@ function getWebpackConfig(wubConfig, webpackOptions) {
   let mergedConfig = {
     entry: [wubConfig.entrypoint],
     output: {
-      path: path.join(process.env.PWD, 'build'),
+      path: wubConfig.outputPath,
+      filename: wubConfig.outputFilename,
     },
     resolve: {
       alias: {

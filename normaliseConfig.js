@@ -4,7 +4,7 @@ const ModuleResolver = require('./ModuleResolver');
 
 /**
  * @param {object} config user-specified `wub` config object
- * @param {string} configFilePath path to `wub.config.js`
+ * @param {string} configFilePath path to `webpack.config.js`
  * @returns {object} normalised wub config
  */
 function normaliseConfig(config, configFilePath) {
@@ -20,10 +20,12 @@ function normaliseConfig(config, configFilePath) {
   );
 
   const configFileDir = path.dirname(configFilePath);
+  const outputPath = path.resolve(configFileDir, config.outputPath || 'build');
 
   const normalisedConfig = {
     browserslist: ['last 2 versions', '> 5%'],
-    configFilePath,
+    outputFilename: config.outputFilename || 'bundle.js',
+    outputPath,
     configFileDir,
   };
 
