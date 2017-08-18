@@ -1,9 +1,9 @@
 /** @jsx h */
 
 import { h } from 'preact';
-import { Block } from 'jsxstyle/lib/preact';
+import { Block } from 'jsxstyle/preact';
 
-import '../example-react/style.css';
+import '../reset.css';
 
 export default function DemoPage() {
   return <Block fontSize={24}>Hello!</Block>;

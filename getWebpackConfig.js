@@ -1,40 +1,44 @@
-const path = require('path');
-const webpackMerge = require('webpack-merge');
-const Module = require('module');
 const invariant = require('invariant');
+const path = require('path');
+const webpack = require('webpack');
+const webpackMerge = require('webpack-merge');
+const webpackPkgJson = require('webpack/package');
+const Module = require('module');
 
 /**
  * Merges presets specified in a wub config object into a webpack config
- * @param {object} wubConfig wub config object
+ * @param {array} presets merged array of presets passed to wub
+ * @param {array} presetDirs array of paths to externally required presets
+ * @param {string} projectDir the directory of the `webpack.config.js` file that called wub
+ * @param {object} globalConfig merged config objects passed to wub
  * @param {string} webpackOptions webpack's `options` object passed through to wub
  * @returns {object} merged webpack config object
  */
-function getWebpackConfig(wubConfig, webpackOptions) {
+function getWebpackConfig(
+  presets,
+  presetDirs,
+  projectDir,
+  globalConfig,
+  webpackOptions
+) {
   const modulePaths = Array.from(
     // dedupe
     new Set(
       [].concat(
         // project directory
-        path.join(wubConfig.configFileDir, 'node_modules'),
+        path.join(projectDir, 'node_modules'),
         // PWD (might not be the project directory)
         path.join(process.env.PWD, 'node_modules'),
         // wub directory
         path.join(__dirname, 'node_modules'),
         // preset directories
-        wubConfig.presets.map(p =>
-          path.resolve(path.dirname(p[0]), 'node_modules')
-        ),
-        module.paths,
-        Module.globalPaths
+        presetDirs.map(p => path.join(p, 'node_modules'))
       )
     )
   );
 
-  // gross
   process.env.NODE_PATH = modulePaths.join(':');
-  Module.Module._initPaths();
-  const webpack = require('webpack');
-  const webpackPkgJson = require('webpack/package');
+  Module._initPaths();
 
   invariant(
     (webpackPkgJson.version + '').startsWith('3.'),
@@ -44,17 +48,10 @@ function getWebpackConfig(wubConfig, webpackOptions) {
 
   // base configuration
   let mergedConfig = {
-    entry: [wubConfig.entrypoint],
     output: {
-      path: wubConfig.outputPath,
-      filename: wubConfig.outputFilename,
-    },
-    resolve: {
-      alias: {
-        __WUB_ENTRYPOINT__: wubConfig.entrypoint,
-      },
-      // 'node_modules' makes webpack search all ancestor node_modules folders
-      modules: [].concat(modulePaths, 'node_modules'),
+      path: path.join(projectDir, 'build'),
+      publicPath: '/',
+      filename: 'bundle.[name].[hash].js',
     },
     plugins: [
       // enable named modules in development
@@ -74,22 +71,17 @@ function getWebpackConfig(wubConfig, webpackOptions) {
 
   // babel options object. presets will mutate this directly (eww gross i know)
   const babelOptions = {
-    presets: [['env', { targets: { browsers: wubConfig.browserslist } }]],
+    presets: [['env', { targets: { browsers: globalConfig.browserslist } }]],
     plugins: ['transform-object-rest-spread', 'transform-object-assign'],
   };
 
   const mergeStrategy = { entry: 'replace' };
 
   // loop through presets
-  for (let idx = -1, len = wubConfig.presets.length; ++idx < len; ) {
-    const [presetPath, presetOptions] = wubConfig.presets[idx];
+  for (let idx = -1, len = presets.length; ++idx < len; ) {
+    const preset = presets[idx];
 
-    const presetConfig = require(presetPath)(
-      wubConfig,
-      presetOptions,
-      webpackOptions,
-      babelOptions
-    );
+    const presetConfig = preset(webpackOptions, babelOptions);
 
     mergedConfig = webpackMerge.smartStrategy(mergeStrategy)(
       mergedConfig,
@@ -119,6 +111,14 @@ function getWebpackConfig(wubConfig, webpackOptions) {
     },
     mergedConfig
   );
+
+  // ensure module.resolve does not get overwritten
+  mergedConfig = webpackMerge(mergedConfig, {
+    resolve: {
+      // 'node_modules' makes webpack search all ancestor node_modules folders
+      modules: [].concat(modulePaths, 'node_modules'),
+    },
+  });
 
   return mergedConfig;
 }
