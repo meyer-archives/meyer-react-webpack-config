@@ -1,5 +1,9 @@
 {
   "lerna": "2.0.0",
-  "packages": ["wub", "presets/*", "examples/*"],
+  "packages": [
+    "wub",
+    "presets/*",
+    "examples/*"
+  ],
   "version": "0.0.1"
 }
