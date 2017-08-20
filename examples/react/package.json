@@ -1,19 +1,17 @@
 {
-  "name": "example",
-  "version": "1.0.0",
-  "description": "",
+  "name": "wub-example-react",
+  "version": "0.0.1",
   "private": true,
-  "main": "index.js",
   "scripts": {
-    "hot": "webpack-dev-server --hot",
+    "start": "webpack-dev-server --hot",
     "build": "webpack -p"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "jsxstyle": "^2.0.0-beta.2",
+    "jsxstyle": "^2.0.0-beta.4",
     "webpack": "^3.3.0",
-    "webpack-dev-server": "^2.6.1"
+    "webpack-dev-server": "^2.6.1",
+    "wub": "^0.0.1",
+    "wub-preset-cssnext": "^0.0.1",
+    "wub-preset-react": "^0.0.1"
   }
 }

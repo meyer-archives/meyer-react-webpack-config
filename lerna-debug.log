@@ -1,0 +1,593 @@
+0 silly input []
+1 silly flags { _: [ 'bootstrap' ], args: [] }
+2 verbose rootPath /Users/meyer/Repositories/wub
+3 info version 2.0.0
+4 info versioning independent
+5 silly existsSync /Users/meyer/Repositories/wub/VERSION
+6 silly initialize attempt
+7 silly initialize success
+8 silly execute attempt
+9 info Bootstrapping 10 packages
+10 info lifecycle preinstall
+11 silly runScript preinstall wub
+12 silly wub
+13 silly runScript preinstall wub-preset-cssnext
+14 silly wub-preset-cssnext
+15 silly runScript preinstall wub-preset-html
+16 silly wub-preset-html
+17 silly runScript preinstall wub-preset-preact
+18 silly wub-preset-preact
+19 silly runScript preinstall wub-preset-react
+20 silly wub-preset-react
+21 silly runScript preinstall wub-preset-svgo
+22 silly wub-preset-svgo
+23 silly runScript preinstall wub-preset-uglify
+24 silly wub-preset-uglify
+25 silly runScript preinstall wub-preset-url
+26 silly wub-preset-url
+27 silly runScript preinstall wub-example-preact
+28 silly wub-example-preact
+29 silly runScript preinstall wub-example-react
+30 silly wub-example-react
+31 silly hasDependencyInstalled wub babel-core
+32 silly dependencyIsSatisfied [ 'babel-core',
+32 silly dependencyIsSatisfied   '^6.25.0',
+32 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/wub/node_modules' ]
+33 verbose dependencyIsSatisfied babel-core false
+34 silly hasDependencyInstalled wub babel-loader
+35 silly dependencyIsSatisfied [ 'babel-loader',
+35 silly dependencyIsSatisfied   '^7.1.1',
+35 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/wub/node_modules' ]
+36 verbose dependencyIsSatisfied babel-loader false
+37 silly hasDependencyInstalled wub babel-plugin-transform-object-assign
+38 silly dependencyIsSatisfied [ 'babel-plugin-transform-object-assign',
+38 silly dependencyIsSatisfied   '^6.22.0',
+38 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/wub/node_modules' ]
+39 verbose dependencyIsSatisfied babel-plugin-transform-object-assign false
+40 silly hasDependencyInstalled wub babel-plugin-transform-object-rest-spread
+41 silly dependencyIsSatisfied [ 'babel-plugin-transform-object-rest-spread',
+41 silly dependencyIsSatisfied   '^6.23.0',
+41 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/wub/node_modules' ]
+42 verbose dependencyIsSatisfied babel-plugin-transform-object-rest-spread false
+43 silly hasDependencyInstalled wub babel-preset-env
+44 silly dependencyIsSatisfied [ 'babel-preset-env',
+44 silly dependencyIsSatisfied   '^1.6.0',
+44 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/wub/node_modules' ]
+45 verbose dependencyIsSatisfied babel-preset-env false
+46 silly hasDependencyInstalled wub invariant
+47 silly dependencyIsSatisfied [ 'invariant',
+47 silly dependencyIsSatisfied   '^2.2.2',
+47 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/wub/node_modules' ]
+48 verbose dependencyIsSatisfied invariant false
+49 silly hasDependencyInstalled wub webpack-merge
+50 silly dependencyIsSatisfied [ 'webpack-merge',
+50 silly dependencyIsSatisfied   '^4.1.0',
+50 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/wub/node_modules' ]
+51 verbose dependencyIsSatisfied webpack-merge false
+52 silly hasDependencyInstalled wub-preset-cssnext css-loader
+53 silly dependencyIsSatisfied [ 'css-loader',
+53 silly dependencyIsSatisfied   '^0.28.4',
+53 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/presets/cssnext/node_modules' ]
+54 verbose dependencyIsSatisfied css-loader false
+55 silly hasDependencyInstalled wub-preset-cssnext extract-text-webpack-plugin
+56 silly dependencyIsSatisfied [ 'extract-text-webpack-plugin',
+56 silly dependencyIsSatisfied   '^3.0.0',
+56 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/presets/cssnext/node_modules' ]
+57 verbose dependencyIsSatisfied extract-text-webpack-plugin false
+58 silly hasDependencyInstalled wub-preset-uglify extract-text-webpack-plugin
+59 silly dependencyIsSatisfied [ 'extract-text-webpack-plugin',
+59 silly dependencyIsSatisfied   '^3.0.0',
+59 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/presets/uglify/node_modules' ]
+60 verbose dependencyIsSatisfied extract-text-webpack-plugin false
+61 silly hasDependencyInstalled wub-preset-cssnext postcss-cssnext
+62 silly dependencyIsSatisfied [ 'postcss-cssnext',
+62 silly dependencyIsSatisfied   '^3.0.2',
+62 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/presets/cssnext/node_modules' ]
+63 verbose dependencyIsSatisfied postcss-cssnext false
+64 silly hasDependencyInstalled wub-preset-cssnext postcss-loader
+65 silly dependencyIsSatisfied [ 'postcss-loader',
+65 silly dependencyIsSatisfied   '^2.0.6',
+65 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/presets/cssnext/node_modules' ]
+66 verbose dependencyIsSatisfied postcss-loader false
+67 silly hasDependencyInstalled wub-preset-cssnext style-loader
+68 silly dependencyIsSatisfied [ 'style-loader',
+68 silly dependencyIsSatisfied   '^0.18.2',
+68 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/presets/cssnext/node_modules' ]
+69 verbose dependencyIsSatisfied style-loader false
+70 silly hasDependencyInstalled wub-preset-html html-webpack-plugin
+71 silly dependencyIsSatisfied [ 'html-webpack-plugin',
+71 silly dependencyIsSatisfied   '^2.29.0',
+71 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/presets/html/node_modules' ]
+72 verbose dependencyIsSatisfied html-webpack-plugin false
+73 silly hasDependencyInstalled wub-preset-preact html-webpack-plugin
+74 silly dependencyIsSatisfied [ 'html-webpack-plugin',
+74 silly dependencyIsSatisfied   '^2.30.1',
+74 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/presets/preact/node_modules' ]
+75 verbose dependencyIsSatisfied html-webpack-plugin false
+76 silly hasDependencyInstalled wub-preset-react html-webpack-plugin
+77 silly dependencyIsSatisfied [ 'html-webpack-plugin',
+77 silly dependencyIsSatisfied   '^2.30.1',
+77 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/presets/react/node_modules' ]
+78 verbose dependencyIsSatisfied html-webpack-plugin false
+79 silly hasDependencyInstalled wub-preset-preact babel-preset-preact
+80 silly dependencyIsSatisfied [ 'babel-preset-preact',
+80 silly dependencyIsSatisfied   '^1.1.0',
+80 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/presets/preact/node_modules' ]
+81 verbose dependencyIsSatisfied babel-preset-preact false
+82 silly hasDependencyInstalled wub-preset-preact preact
+83 silly dependencyIsSatisfied [ 'preact',
+83 silly dependencyIsSatisfied   '^8.2.1',
+83 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/presets/preact/node_modules' ]
+84 verbose dependencyIsSatisfied preact false
+85 silly hasDependencyInstalled wub-preset-react babel-preset-react
+86 silly dependencyIsSatisfied [ 'babel-preset-react',
+86 silly dependencyIsSatisfied   '^6.24.1',
+86 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/presets/react/node_modules' ]
+87 verbose dependencyIsSatisfied babel-preset-react false
+88 silly hasDependencyInstalled wub-preset-react react
+89 silly dependencyIsSatisfied [ 'react',
+89 silly dependencyIsSatisfied   '^15.6.1',
+89 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/presets/react/node_modules' ]
+90 verbose dependencyIsSatisfied react false
+91 silly hasDependencyInstalled wub-preset-react react-dom
+92 silly dependencyIsSatisfied [ 'react-dom',
+92 silly dependencyIsSatisfied   '^15.6.1',
+92 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/presets/react/node_modules' ]
+93 verbose dependencyIsSatisfied react-dom false
+94 silly hasDependencyInstalled wub-preset-react react-hot-loader
+95 silly dependencyIsSatisfied [ 'react-hot-loader',
+95 silly dependencyIsSatisfied   '^3.0.0-beta.7',
+95 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/presets/react/node_modules' ]
+96 verbose dependencyIsSatisfied react-hot-loader false
+97 silly hasDependencyInstalled wub-preset-svgo file-loader
+98 silly dependencyIsSatisfied [ 'file-loader',
+98 silly dependencyIsSatisfied   '^0.11.2',
+98 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/presets/svgo/node_modules' ]
+99 verbose dependencyIsSatisfied file-loader false
+100 silly hasDependencyInstalled wub-preset-svgo svgo-loader
+101 silly dependencyIsSatisfied [ 'svgo-loader',
+101 silly dependencyIsSatisfied   '^1.2.1',
+101 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/presets/svgo/node_modules' ]
+102 verbose dependencyIsSatisfied svgo-loader false
+103 silly hasDependencyInstalled wub-preset-uglify uglifyjs-webpack-plugin
+104 silly dependencyIsSatisfied [ 'uglifyjs-webpack-plugin',
+104 silly dependencyIsSatisfied   '^1.0.0-beta.2',
+104 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/presets/uglify/node_modules' ]
+105 verbose dependencyIsSatisfied uglifyjs-webpack-plugin false
+106 silly hasDependencyInstalled wub-preset-url url-loader
+107 silly dependencyIsSatisfied [ 'url-loader',
+107 silly dependencyIsSatisfied   '^0.5.9',
+107 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/presets/url/node_modules' ]
+108 verbose dependencyIsSatisfied url-loader false
+109 silly hasDependencyInstalled wub-example-preact jsxstyle
+110 silly dependencyIsSatisfied [ 'jsxstyle',
+110 silly dependencyIsSatisfied   '^2.0.0-beta.3',
+110 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/examples/preact/node_modules' ]
+111 verbose dependencyIsSatisfied jsxstyle false
+112 silly hasDependencyInstalled wub-example-react jsxstyle
+113 silly dependencyIsSatisfied [ 'jsxstyle',
+113 silly dependencyIsSatisfied   '^2.0.0-beta.3',
+113 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/examples/react/node_modules' ]
+114 verbose dependencyIsSatisfied jsxstyle false
+115 silly hasDependencyInstalled wub-example-preact webpack
+116 silly dependencyIsSatisfied [ 'webpack',
+116 silly dependencyIsSatisfied   '^3.3.0',
+116 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/examples/preact/node_modules' ]
+117 verbose dependencyIsSatisfied webpack false
+118 silly hasDependencyInstalled wub-example-react webpack
+119 silly dependencyIsSatisfied [ 'webpack',
+119 silly dependencyIsSatisfied   '^3.3.0',
+119 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/examples/react/node_modules' ]
+120 verbose dependencyIsSatisfied webpack false
+121 silly hasDependencyInstalled wub-example-preact webpack-dev-server
+122 silly dependencyIsSatisfied [ 'webpack-dev-server',
+122 silly dependencyIsSatisfied   '^2.6.1',
+122 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/examples/preact/node_modules' ]
+123 verbose dependencyIsSatisfied webpack-dev-server false
+124 silly hasDependencyInstalled wub-example-react webpack-dev-server
+125 silly dependencyIsSatisfied [ 'webpack-dev-server',
+125 silly dependencyIsSatisfied   '^2.6.1',
+125 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/examples/react/node_modules' ]
+126 verbose dependencyIsSatisfied webpack-dev-server false
+127 silly hasDependencyInstalled wub-example-preact wub
+128 silly dependencyIsSatisfied [ 'wub',
+128 silly dependencyIsSatisfied   '^0.0.0',
+128 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/examples/preact/node_modules' ]
+129 verbose dependencyIsSatisfied wub false
+130 silly hasDependencyInstalled wub-example-react wub
+131 silly dependencyIsSatisfied [ 'wub',
+131 silly dependencyIsSatisfied   '^0.0.0',
+131 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/examples/react/node_modules' ]
+132 verbose dependencyIsSatisfied wub false
+133 silly hasDependencyInstalled wub-example-preact wub-preset-preact
+134 silly dependencyIsSatisfied [ 'wub-preset-preact',
+134 silly dependencyIsSatisfied   '^0.0.0',
+134 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/examples/preact/node_modules' ]
+135 verbose dependencyIsSatisfied wub-preset-preact false
+136 silly hasDependencyInstalled wub-example-preact wub-preset-cssnext
+137 silly dependencyIsSatisfied [ 'wub-preset-cssnext',
+137 silly dependencyIsSatisfied   '^0.0.0',
+137 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/examples/preact/node_modules' ]
+138 verbose dependencyIsSatisfied wub-preset-cssnext false
+139 silly hasDependencyInstalled wub-example-react wub-preset-cssnext
+140 silly dependencyIsSatisfied [ 'wub-preset-cssnext',
+140 silly dependencyIsSatisfied   '^0.0.0',
+140 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/examples/react/node_modules' ]
+141 verbose dependencyIsSatisfied wub-preset-cssnext false
+142 silly hasDependencyInstalled wub-example-react wub-preset-react
+143 silly dependencyIsSatisfied [ 'wub-preset-react',
+143 silly dependencyIsSatisfied   '^0.0.0',
+143 silly dependencyIsSatisfied   '/Users/meyer/Repositories/wub/examples/react/node_modules' ]
+144 verbose dependencyIsSatisfied wub-preset-react false
+145 silly root dependencies []
+146 silly leaf dependencies {
+146 silly leaf dependencies   "wub": [
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "babel-core@^6.25.0",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     },
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "babel-loader@^7.1.1",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     },
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "babel-plugin-transform-object-assign@^6.22.0",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     },
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "babel-plugin-transform-object-rest-spread@^6.23.0",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     },
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "babel-preset-env@^1.6.0",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     },
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "invariant@^2.2.2",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     },
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "webpack-merge@^4.1.0",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     }
+146 silly leaf dependencies   ],
+146 silly leaf dependencies   "wub-preset-cssnext": [
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "css-loader@^0.28.4",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     },
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "extract-text-webpack-plugin@^3.0.0",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     },
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "postcss-cssnext@^3.0.2",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     },
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "postcss-loader@^2.0.6",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     },
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "style-loader@^0.18.2",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     }
+146 silly leaf dependencies   ],
+146 silly leaf dependencies   "wub-preset-uglify": [
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "extract-text-webpack-plugin@^3.0.0",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     },
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "uglifyjs-webpack-plugin@^1.0.0-beta.2",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     }
+146 silly leaf dependencies   ],
+146 silly leaf dependencies   "wub-preset-html": [
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "html-webpack-plugin@^2.29.0",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     }
+146 silly leaf dependencies   ],
+146 silly leaf dependencies   "wub-preset-preact": [
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "html-webpack-plugin@^2.30.1",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     },
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "babel-preset-preact@^1.1.0",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     },
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "preact@^8.2.1",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     }
+146 silly leaf dependencies   ],
+146 silly leaf dependencies   "wub-preset-react": [
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "html-webpack-plugin@^2.30.1",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     },
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "babel-preset-react@^6.24.1",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     },
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "react@^15.6.1",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     },
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "react-dom@^15.6.1",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     },
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "react-hot-loader@^3.0.0-beta.7",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     }
+146 silly leaf dependencies   ],
+146 silly leaf dependencies   "wub-preset-svgo": [
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "file-loader@^0.11.2",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     },
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "svgo-loader@^1.2.1",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     }
+146 silly leaf dependencies   ],
+146 silly leaf dependencies   "wub-preset-url": [
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "url-loader@^0.5.9",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     }
+146 silly leaf dependencies   ],
+146 silly leaf dependencies   "wub-example-preact": [
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "jsxstyle@^2.0.0-beta.3",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     },
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "webpack@^3.3.0",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     },
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "webpack-dev-server@^2.6.1",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     },
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "wub@^0.0.0",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     },
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "wub-preset-preact@^0.0.0",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     },
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "wub-preset-cssnext@^0.0.0",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     }
+146 silly leaf dependencies   ],
+146 silly leaf dependencies   "wub-example-react": [
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "jsxstyle@^2.0.0-beta.3",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     },
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "webpack@^3.3.0",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     },
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "webpack-dev-server@^2.6.1",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     },
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "wub@^0.0.0",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     },
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "wub-preset-cssnext@^0.0.0",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     },
+146 silly leaf dependencies     {
+146 silly leaf dependencies       "dependency": "wub-preset-react@^0.0.0",
+146 silly leaf dependencies       "isSatisfied": false
+146 silly leaf dependencies     }
+146 silly leaf dependencies   ]
+146 silly leaf dependencies }
+147 info Installing external dependencies
+148 verbose actions 10 actions, concurrency 4
+149 silly installInDir wub [ 'babel-core@^6.25.0',
+149 silly installInDir   'babel-loader@^7.1.1',
+149 silly installInDir   'babel-plugin-transform-object-assign@^6.22.0',
+149 silly installInDir   'babel-plugin-transform-object-rest-spread@^6.23.0',
+149 silly installInDir   'babel-preset-env@^1.6.0',
+149 silly installInDir   'invariant@^2.2.2',
+149 silly installInDir   'webpack-merge@^4.1.0' ]
+150 silly installInDir backup /Users/meyer/Repositories/wub/wub/package.json
+151 silly rename [ '/Users/meyer/Repositories/wub/wub/package.json',
+151 silly rename   '/Users/meyer/Repositories/wub/wub/package.json.lerna_backup' ]
+152 silly installInDir cssnext [ 'css-loader@^0.28.4',
+152 silly installInDir   'extract-text-webpack-plugin@^3.0.0',
+152 silly installInDir   'postcss-cssnext@^3.0.2',
+152 silly installInDir   'postcss-loader@^2.0.6',
+152 silly installInDir   'style-loader@^0.18.2' ]
+153 silly installInDir backup /Users/meyer/Repositories/wub/presets/cssnext/package.json
+154 silly rename [ '/Users/meyer/Repositories/wub/presets/cssnext/package.json',
+154 silly rename   '/Users/meyer/Repositories/wub/presets/cssnext/package.json.lerna_backup' ]
+155 silly installInDir uglify [ 'extract-text-webpack-plugin@^3.0.0',
+155 silly installInDir   'uglifyjs-webpack-plugin@^1.0.0-beta.2' ]
+156 silly installInDir backup /Users/meyer/Repositories/wub/presets/uglify/package.json
+157 silly rename [ '/Users/meyer/Repositories/wub/presets/uglify/package.json',
+157 silly rename   '/Users/meyer/Repositories/wub/presets/uglify/package.json.lerna_backup' ]
+158 silly installInDir html [ 'html-webpack-plugin@^2.29.0' ]
+159 silly installInDir backup /Users/meyer/Repositories/wub/presets/html/package.json
+160 silly rename [ '/Users/meyer/Repositories/wub/presets/html/package.json',
+160 silly rename   '/Users/meyer/Repositories/wub/presets/html/package.json.lerna_backup' ]
+161 silly installInDir writing tempJson { dependencies:
+161 silly installInDir    { 'babel-core': '^6.25.0',
+161 silly installInDir      'babel-loader': '^7.1.1',
+161 silly installInDir      'babel-plugin-transform-object-assign': '^6.22.0',
+161 silly installInDir      'babel-plugin-transform-object-rest-spread': '^6.23.0',
+161 silly installInDir      'babel-preset-env': '^1.6.0',
+161 silly installInDir      invariant: '^2.2.2',
+161 silly installInDir      'webpack-merge': '^4.1.0' } }
+162 silly installInDir writing tempJson { dependencies:
+162 silly installInDir    { 'css-loader': '^0.28.4',
+162 silly installInDir      'extract-text-webpack-plugin': '^3.0.0',
+162 silly installInDir      'postcss-cssnext': '^3.0.2',
+162 silly installInDir      'postcss-loader': '^2.0.6',
+162 silly installInDir      'style-loader': '^0.18.2' } }
+163 silly installInDir writing tempJson { dependencies:
+163 silly installInDir    { 'extract-text-webpack-plugin': '^3.0.0',
+163 silly installInDir      'uglifyjs-webpack-plugin': '^1.0.0-beta.2' } }
+164 silly installInDir writing tempJson { dependencies: { 'html-webpack-plugin': '^2.29.0' } }
+165 silly getExecOpts { cwd: '/Users/meyer/Repositories/wub/presets/html' }
+166 silly installInDir [ 'npm', [ 'install' ] ]
+167 silly getExecOpts { cwd: '/Users/meyer/Repositories/wub/wub' }
+168 silly installInDir [ 'npm', [ 'install' ] ]
+169 silly getExecOpts { cwd: '/Users/meyer/Repositories/wub/presets/cssnext' }
+170 silly installInDir [ 'npm', [ 'install' ] ]
+171 silly getExecOpts { cwd: '/Users/meyer/Repositories/wub/presets/uglify' }
+172 silly installInDir [ 'npm', [ 'install' ] ]
+173 silly installInDir cleanup /Users/meyer/Repositories/wub/presets/html/package.json
+174 silly renameSync [ '/Users/meyer/Repositories/wub/presets/html/package.json.lerna_backup',
+174 silly renameSync   '/Users/meyer/Repositories/wub/presets/html/package.json' ]
+175 verbose installed leaf wub-preset-html
+176 silly installInDir preact [ 'html-webpack-plugin@^2.30.1',
+176 silly installInDir   'babel-preset-preact@^1.1.0',
+176 silly installInDir   'preact@^8.2.1' ]
+177 silly installInDir backup /Users/meyer/Repositories/wub/presets/preact/package.json
+178 silly rename [ '/Users/meyer/Repositories/wub/presets/preact/package.json',
+178 silly rename   '/Users/meyer/Repositories/wub/presets/preact/package.json.lerna_backup' ]
+179 silly installInDir writing tempJson { dependencies:
+179 silly installInDir    { 'html-webpack-plugin': '^2.30.1',
+179 silly installInDir      'babel-preset-preact': '^1.1.0',
+179 silly installInDir      preact: '^8.2.1' } }
+180 silly getExecOpts { cwd: '/Users/meyer/Repositories/wub/presets/preact' }
+181 silly installInDir [ 'npm', [ 'install' ] ]
+182 silly installInDir cleanup /Users/meyer/Repositories/wub/presets/uglify/package.json
+183 silly renameSync [ '/Users/meyer/Repositories/wub/presets/uglify/package.json.lerna_backup',
+183 silly renameSync   '/Users/meyer/Repositories/wub/presets/uglify/package.json' ]
+184 verbose installed leaf wub-preset-uglify
+185 silly installInDir react [ 'html-webpack-plugin@^2.30.1',
+185 silly installInDir   'babel-preset-react@^6.24.1',
+185 silly installInDir   'react@^15.6.1',
+185 silly installInDir   'react-dom@^15.6.1',
+185 silly installInDir   'react-hot-loader@^3.0.0-beta.7' ]
+186 silly installInDir backup /Users/meyer/Repositories/wub/presets/react/package.json
+187 silly rename [ '/Users/meyer/Repositories/wub/presets/react/package.json',
+187 silly rename   '/Users/meyer/Repositories/wub/presets/react/package.json.lerna_backup' ]
+188 silly installInDir writing tempJson { dependencies:
+188 silly installInDir    { 'html-webpack-plugin': '^2.30.1',
+188 silly installInDir      'babel-preset-react': '^6.24.1',
+188 silly installInDir      react: '^15.6.1',
+188 silly installInDir      'react-dom': '^15.6.1',
+188 silly installInDir      'react-hot-loader': '^3.0.0-beta.7' } }
+189 silly getExecOpts { cwd: '/Users/meyer/Repositories/wub/presets/react' }
+190 silly installInDir [ 'npm', [ 'install' ] ]
+191 silly installInDir cleanup /Users/meyer/Repositories/wub/wub/package.json
+192 silly renameSync [ '/Users/meyer/Repositories/wub/wub/package.json.lerna_backup',
+192 silly renameSync   '/Users/meyer/Repositories/wub/wub/package.json' ]
+193 verbose installed leaf wub
+194 silly installInDir svgo [ 'file-loader@^0.11.2', 'svgo-loader@^1.2.1' ]
+195 silly installInDir backup /Users/meyer/Repositories/wub/presets/svgo/package.json
+196 silly rename [ '/Users/meyer/Repositories/wub/presets/svgo/package.json',
+196 silly rename   '/Users/meyer/Repositories/wub/presets/svgo/package.json.lerna_backup' ]
+197 silly installInDir writing tempJson { dependencies: { 'file-loader': '^0.11.2', 'svgo-loader': '^1.2.1' } }
+198 silly getExecOpts { cwd: '/Users/meyer/Repositories/wub/presets/svgo' }
+199 silly installInDir [ 'npm', [ 'install' ] ]
+200 silly installInDir cleanup /Users/meyer/Repositories/wub/presets/svgo/package.json
+201 silly renameSync [ '/Users/meyer/Repositories/wub/presets/svgo/package.json.lerna_backup',
+201 silly renameSync   '/Users/meyer/Repositories/wub/presets/svgo/package.json' ]
+202 verbose installed leaf wub-preset-svgo
+203 silly installInDir url [ 'url-loader@^0.5.9' ]
+204 silly installInDir backup /Users/meyer/Repositories/wub/presets/url/package.json
+205 silly rename [ '/Users/meyer/Repositories/wub/presets/url/package.json',
+205 silly rename   '/Users/meyer/Repositories/wub/presets/url/package.json.lerna_backup' ]
+206 silly installInDir writing tempJson { dependencies: { 'url-loader': '^0.5.9' } }
+207 silly getExecOpts { cwd: '/Users/meyer/Repositories/wub/presets/url' }
+208 silly installInDir [ 'npm', [ 'install' ] ]
+209 silly installInDir cleanup /Users/meyer/Repositories/wub/presets/cssnext/package.json
+210 silly renameSync [ '/Users/meyer/Repositories/wub/presets/cssnext/package.json.lerna_backup',
+210 silly renameSync   '/Users/meyer/Repositories/wub/presets/cssnext/package.json' ]
+211 verbose installed leaf wub-preset-cssnext
+212 silly installInDir preact [ 'jsxstyle@^2.0.0-beta.3',
+212 silly installInDir   'webpack@^3.3.0',
+212 silly installInDir   'webpack-dev-server@^2.6.1',
+212 silly installInDir   'wub@^0.0.0',
+212 silly installInDir   'wub-preset-preact@^0.0.0',
+212 silly installInDir   'wub-preset-cssnext@^0.0.0' ]
+213 silly installInDir backup /Users/meyer/Repositories/wub/examples/preact/package.json
+214 silly rename [ '/Users/meyer/Repositories/wub/examples/preact/package.json',
+214 silly rename   '/Users/meyer/Repositories/wub/examples/preact/package.json.lerna_backup' ]
+215 silly installInDir writing tempJson { dependencies:
+215 silly installInDir    { jsxstyle: '^2.0.0-beta.3',
+215 silly installInDir      webpack: '^3.3.0',
+215 silly installInDir      'webpack-dev-server': '^2.6.1',
+215 silly installInDir      wub: '^0.0.0',
+215 silly installInDir      'wub-preset-preact': '^0.0.0',
+215 silly installInDir      'wub-preset-cssnext': '^0.0.0' } }
+216 silly getExecOpts { cwd: '/Users/meyer/Repositories/wub/examples/preact' }
+217 silly installInDir [ 'npm', [ 'install' ] ]
+218 silly installInDir cleanup /Users/meyer/Repositories/wub/presets/preact/package.json
+219 silly renameSync [ '/Users/meyer/Repositories/wub/presets/preact/package.json.lerna_backup',
+219 silly renameSync   '/Users/meyer/Repositories/wub/presets/preact/package.json' ]
+220 verbose installed leaf wub-preset-preact
+221 silly installInDir react [ 'jsxstyle@^2.0.0-beta.3',
+221 silly installInDir   'webpack@^3.3.0',
+221 silly installInDir   'webpack-dev-server@^2.6.1',
+221 silly installInDir   'wub@^0.0.0',
+221 silly installInDir   'wub-preset-cssnext@^0.0.0',
+221 silly installInDir   'wub-preset-react@^0.0.0' ]
+222 silly installInDir backup /Users/meyer/Repositories/wub/examples/react/package.json
+223 silly rename [ '/Users/meyer/Repositories/wub/examples/react/package.json',
+223 silly rename   '/Users/meyer/Repositories/wub/examples/react/package.json.lerna_backup' ]
+224 silly installInDir writing tempJson { dependencies:
+224 silly installInDir    { jsxstyle: '^2.0.0-beta.3',
+224 silly installInDir      webpack: '^3.3.0',
+224 silly installInDir      'webpack-dev-server': '^2.6.1',
+224 silly installInDir      wub: '^0.0.0',
+224 silly installInDir      'wub-preset-cssnext': '^0.0.0',
+224 silly installInDir      'wub-preset-react': '^0.0.0' } }
+225 silly getExecOpts { cwd: '/Users/meyer/Repositories/wub/examples/react' }
+226 silly installInDir [ 'npm', [ 'install' ] ]
+227 silly installInDir cleanup /Users/meyer/Repositories/wub/presets/react/package.json
+228 silly renameSync [ '/Users/meyer/Repositories/wub/presets/react/package.json.lerna_backup',
+228 silly renameSync   '/Users/meyer/Repositories/wub/presets/react/package.json' ]
+229 verbose installed leaf wub-preset-react
+230 silly installInDir cleanup /Users/meyer/Repositories/wub/presets/url/package.json
+231 silly renameSync [ '/Users/meyer/Repositories/wub/presets/url/package.json.lerna_backup',
+231 silly renameSync   '/Users/meyer/Repositories/wub/presets/url/package.json' ]
+232 verbose installed leaf wub-preset-url
+233 silly installInDir cleanup /Users/meyer/Repositories/wub/examples/react/package.json
+234 silly renameSync [ '/Users/meyer/Repositories/wub/examples/react/package.json.lerna_backup',
+234 silly renameSync   '/Users/meyer/Repositories/wub/examples/react/package.json' ]
+235 verbose installed leaf wub-example-react
+236 error execute Error: Command failed: npm install
+236 error execute npm ERR! code E404
+236 error execute npm ERR! 404 Not Found: wub-preset-react@^0.0.0
+236 error execute
+236 error execute npm ERR! A complete log of this run can be found in:
+236 error execute npm ERR!     /Users/meyer/.npm/_logs/2017-08-20T19_00_20_390Z-debug.log
+236 error execute
+236 error execute     at Promise.all.then.arr (/usr/local/lib/node_modules/lerna/node_modules/execa/index.js:210:11)
+236 error execute     at process._tickCallback (internal/process/next_tick.js:109:7)
+236 error execute  callback with error
+236 error execute  { Error: Command failed: npm install
+236 error execute npm ERR! code E404
+236 error execute npm ERR! 404 Not Found: wub-preset-react@^0.0.0
+236 error execute
+236 error execute npm ERR! A complete log of this run can be found in:
+236 error execute npm ERR!     /Users/meyer/.npm/_logs/2017-08-20T19_00_20_390Z-debug.log
+236 error execute
+236 error execute     at Promise.all.then.arr (/usr/local/lib/node_modules/lerna/node_modules/execa/index.js:210:11)
+236 error execute     at process._tickCallback (internal/process/next_tick.js:109:7)
+236 error execute   stack: 'Error: Command failed: npm install\nnpm ERR! code E404\nnpm ERR! 404 Not Found: wub-preset-react@^0.0.0\n\nnpm ERR! A complete log of this run can be found in:\nnpm ERR!     /Users/meyer/.npm/_logs/2017-08-20T19_00_20_390Z-debug.log\n\n    at Promise.all.then.arr (/usr/local/lib/node_modules/lerna/node_modules/execa/index.js:210:11)\n    at process._tickCallback (internal/process/next_tick.js:109:7)',
+236 error execute   code: 1,
+236 error execute   killed: false,
+236 error execute   stdout: '',
+236 error execute   stderr: 'npm ERR! code E404\nnpm ERR! 404 Not Found: wub-preset-react@^0.0.0\n\nnpm ERR! A complete log of this run can be found in:\nnpm ERR!     /Users/meyer/.npm/_logs/2017-08-20T19_00_20_390Z-debug.log\n',
+236 error execute   failed: true,
+236 error execute   signal: null,
+236 error execute   cmd: 'npm install',
+236 error execute   timedOut: false }

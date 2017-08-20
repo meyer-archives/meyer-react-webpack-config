@@ -1,0 +1,16 @@
+{
+  "name": "wub-preset-svgo",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "file-loader": "^0.11.2",
+    "svgo-loader": "^1.2.1"
+  }
+}

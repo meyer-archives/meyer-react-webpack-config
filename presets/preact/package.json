@@ -1,0 +1,12 @@
+{
+  "name": "wub-preset-preact",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "@meyer",
+  "license": "MIT",
+  "dependencies": {
+    "babel-preset-preact": "^1.1.0",
+    "html-webpack-plugin": "^2.30.1",
+    "preact": "^8.2.1"
+  }
+}

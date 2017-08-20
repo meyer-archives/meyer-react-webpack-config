@@ -1,0 +1,21 @@
+{
+  "name": "wub",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "@meyer",
+  "homepage": "https://github.com/meyer/wub",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-transform-object-assign": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
+    "invariant": "^2.2.2",
+    "webpack-merge": "^4.1.0"
+  },
+  "peerDependencies": {
+    "webpack": "^3.0.0",
+    "webpack-dev-server": "^2.6.0"
+  }
+}
